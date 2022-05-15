@@ -4,6 +4,8 @@ public class Order
 {
     private readonly List<Parcel> _parcels;
 
+    private bool _isSpeedyShipping;
+
     public Order()
     {
         _parcels = new List<Parcel>();
@@ -12,6 +14,11 @@ public class Order
     public Order(List<Parcel> parcels)
     {
         _parcels = parcels;
+    }
+
+    public void SetSpeedyShipping(bool isSpeedyShipping)
+    {
+        _isSpeedyShipping = isSpeedyShipping;
     }
 
     public void AddParcel(Parcel parcel)
@@ -29,7 +36,14 @@ public class Order
             totalCost += parcel.Cost;
         }
 
+        if (_isSpeedyShipping)
+        {
+            output += "Speedy Shipping: $" + totalCost + ". ";
+            totalCost += totalCost;
+        }
+
         output += "Total Cost: $" + totalCost;
+        
         return output;
     }
 
