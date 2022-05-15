@@ -9,3 +9,5 @@ I know I need to create a grid of possible discounts and parcels used within the
 With more time I would also have added proper usage comments to each of the public methods and classes.
 
 I may have also considered a better configuration method for setting the price constants for values rather than hard coding them.
+
+I also understand that the stated output should be a 'collection of items', however, I have simply outputed using a string. I did not expect the last step to be as challenging as it was and could have easily changed the output to a collection of a new type like 'BillItem'.
