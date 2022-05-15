@@ -5,18 +5,24 @@ namespace CourierKata.Tests;
 
 public class CostCalculator_Tests
 {
-    private Order _order;
-    
-    [SetUp]
-    public void Setup()
+
+    [Test]
+    public void TestSingleParcelSmall()
     {
-        _order = new Order();
+        var order = new Order();
+        order.AddParcel(new Parcel(1f, 1f, 1f));
+        Assert.That(order.CalculateCost(), Is.EqualTo("Small Parcel: $3. Total Cost: $3"));
     }
 
     [Test]
-    public void Test1()
+    public void TestMultipleParcelsAllSizes()
     {
-        _order.AddParcel(new Parcel(1f, 1f, 1f));
-        Assert.That(_order.CalculateCost(), Is.EqualTo("Small Parcel: $3. Total Cost: $3"));
+        var order = new Order();
+        order.AddParcel(new Parcel(2, 4, 5));
+        order.AddParcel(new Parcel(1, 1, 1));
+        order.AddParcel(new Parcel(20, 20 , 20));
+        order.AddParcel(new Parcel(40, 40, 40));
+        Assert.That(order.CalculateCost(), Is.EqualTo(
+            "Medium Parcel: $8. Small Parcel: $3. Large Parcel: $15. XL Parcel: $25. Total Cost: $51"));
     }
 }
