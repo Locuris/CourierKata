@@ -9,12 +9,15 @@ public readonly struct Parcel
     private readonly float _breadth;
     private readonly float _weight;
 
-    private const int pricePerKilogramOfWeightExcess = 2;
+    private int CostPerKiloOfWeightExcess => Size == Size.Heavy ? 1 : 2;
 
     private Size Size
     {
         get
         {
+            if (_weight >= 50)
+                return Size.Heavy;
+            
             var totalDimensions = _length + _width + _breadth;
             return totalDimensions switch
             {
@@ -36,6 +39,7 @@ public readonly struct Parcel
                 Size.Medium => 3,
                 Size.Large => 6,
                 Size.XL => 10,
+                Size.Heavy => 50,
                 _ => 0
             };
         }
@@ -50,7 +54,7 @@ public readonly struct Parcel
             var weightExcess = _weight - WeightLimit;
             if (weightExcess <= 0)
                 return 0;
-            return (int) Math.Ceiling(weightExcess) * pricePerKilogramOfWeightExcess;
+            return (int) Math.Ceiling(weightExcess) * CostPerKiloOfWeightExcess;
         }
     }
     

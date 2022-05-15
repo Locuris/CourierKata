@@ -62,4 +62,22 @@ public class Order_Tests
             "Medium Parcel: $12. Small Parcel: $5. Large Parcel: $23. XL Parcel: $35. Total Cost: $75"));
         
     }
+
+    [Test]
+    public void TestSingleHeavyParcelNoExcess()
+    {
+        var order = new Order();
+        order.AddParcel(new Parcel(10, 10, 10, 50));
+        Assert.That(order.CalculateCost(), Is.EqualTo(
+            "Heavy Parcel: $50. Total Cost: $50"));
+    }
+
+    [Test]
+    public void TestSingleHeavyParcelWithExcess()
+    {
+        var order = new Order();
+        order.AddParcel(new Parcel(10, 10, 10, 60));
+        Assert.That(order.CalculateCost(), Is.EqualTo(
+            "Heavy Parcel: $60. Total Cost: $60"));
+    }
 }
