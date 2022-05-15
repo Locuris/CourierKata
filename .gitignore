@@ -1,0 +1,8 @@
+﻿/CourierKata/obj/*
+/CourierKata.Tests/obj/*
+/CourierKata/CourierKata.csproj
+*.dll
+/CourierKata/bin/*
+/CourierKata.Tests/bin/*
+/CourierKata.Tests/CourierKata.Tests.csproj
+/.idea/*
