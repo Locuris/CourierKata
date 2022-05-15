@@ -80,4 +80,18 @@ public class Order_Tests
         Assert.That(order.CalculateCost(), Is.EqualTo(
             "Heavy Parcel: $60. Total Cost: $60"));
     }
+
+    [Test]
+    public void TestMultipleDiscounts()
+    {
+        var order = new Order();
+        order.AddParcel(new Parcel(2, 4, 5, 1));
+        order.AddParcel(new Parcel(2, 4, 5, 1));
+        order.AddParcel(new Parcel(2, 4, 5, 1));
+        order.AddParcel(new Parcel(2, 4, 5, 4));
+        order.AddParcel(new Parcel(2, 4, 5, 4));
+        order.AddParcel(new Parcel(2, 4, 5, 4));
+        Assert.That(order.CalculateCost(), Is.EqualTo(
+            "Medium Parcel: $8. Medium Parcel: $8. Medium Parcel: $8. Medium Parcel: $10. Medium Parcel: $10. Medium Parcel: $10. Medium Parcel Mania! -8$. Medium Parcel Mania! -10$. Total Cost: $36"));
+    }
 }

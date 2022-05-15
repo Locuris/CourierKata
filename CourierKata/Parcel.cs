@@ -2,7 +2,7 @@
 
 namespace CourierKata;
 
-public readonly struct Parcel
+public class Parcel
 {
     private readonly float _length;
     private readonly float _width;
@@ -11,7 +11,7 @@ public readonly struct Parcel
 
     private int CostPerKiloOfWeightExcess => Size == Size.Heavy ? 1 : 2;
 
-    private Size Size
+    public Size Size
     {
         get
         {
@@ -61,7 +61,7 @@ public readonly struct Parcel
     public int Cost => SizeCost + WeightCost;
     
     public string CostLine => Size + " Parcel: $" + Cost + ".";
-    
+
     public Parcel(float length, float width, float breadth, float weight)
     {
         _length = length;
